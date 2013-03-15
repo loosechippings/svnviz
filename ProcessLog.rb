@@ -8,11 +8,12 @@ def create_node(name)
   node=Hash.new
   node[:name]=name
   node[:count]=0
+  node
 end
 
 def get_node(array,name)
   array.each { |node| return node if node[:name]==name }
-  return nil
+  nil
 end
 
 def put_in_tree(node,tokens)
@@ -22,7 +23,10 @@ def put_in_tree(node,tokens)
   array_of_children=node[:children]
 
   next_node=get_node(array_of_children,tokens.first)
-  if next_node==nil then next_node=create_node(tokens.first)
+  if next_node==nil
+    next_node=create_node(tokens.first)
+    array_of_children<<next_node
+  end
 
   next_node[:count]+=1
 

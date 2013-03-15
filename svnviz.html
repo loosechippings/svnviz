@@ -19,6 +19,7 @@
 
 </body>
 <script src="http://d3js.org/d3.v3.min.js"></script>
+<script src="output.js"></script>
 <script type="text/javascript">
     var width = 3000,
     height = 2000,
@@ -35,8 +36,7 @@
     .append("g")
     .attr("transform", "translate(-.5,-.5)");
 
-    d3.json("output.js", function(error, json) {
-    var cell = svg.data([json]).selectAll("g")
+    var cell = svg.data([dataset]).selectAll("g")
     .data(treemap.nodes)
     .enter().append("g")
     .attr("class", "cell")
@@ -53,7 +53,6 @@
     .attr("dy", ".35em")
     .attr("text-anchor", "middle")
     .text(function(d) { return d.children ? null : d.name; });
-    });
 
 
 </script>
